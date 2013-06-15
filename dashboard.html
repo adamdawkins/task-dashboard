@@ -1,0 +1,63 @@
+<head>
+  <title>dashboard</title>
+</head>
+<body>
+  {{loginButtons}}
+  <div class="span8"> 
+  {{> new_task}}
+<h2> Tasks</h2>
+  {{> task_list}}
+</div>
+
+<div class="span4">
+  {{> tasks_in_progress}}
+  {{> tasks_with_me}}
+</div>
+</body>
+
+<template name="task_list">
+<ul>
+  {{#each tasks}}
+    {{> task}}
+  {{/each}}
+</ul>
+</template>
+
+<template name="task">
+<li>
+  {{name}} created by <em>{{creator_email}}</em>
+  {{#if not_started}} 
+  <a class="btn btn-primary" href="#" id="start">
+    Start
+  </a>
+  {{/if}}
+  {{#if not_finished}} 
+  <a class="btn btn-primary" href="#" id="finish">
+    Finish
+  </a>
+  {{/if}}
+</li>
+</template>
+
+<template name="new_task">
+    <input placeholder="new task name" type="text" name="task_name"/>
+    <button class="btn btn-primary">Go</button>
+</template>
+
+<template name="tasks_in_progress">
+  <h3> Work in Progress </h3>
+ <ul>
+  {{#each tasks}}
+    {{> task}}
+  {{/each}}
+</ul>
+</template>
+<template name="tasks_with_me">
+  <h3>With me</h3>
+ <ul>
+  {{#each tasks}}
+    {{> task}}
+  {{/each}}
+</ul>
+</template>
+
