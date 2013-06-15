@@ -8,6 +8,11 @@ Tasks.allow({
   }
 });
 
+
+displayDate = function (date) {
+  return humaneDate(date);
+};
+
 displayName = function (user) {
   return user.emails[0].address;
 };
@@ -20,7 +25,13 @@ if (Meteor.isClient) {
 
   Template.new_task.events({
     'click button' : function () {
-      Tasks.insert({'creator': Meteor.userId(),  'name': $('input').val() });
+      Tasks.insert(
+        {
+          'creator': Meteor.userId(),
+          'name': $('input').val(),
+          'created_at': (new Date())
+        }
+      );
     }
   });
   
@@ -33,6 +44,11 @@ if (Meteor.isClient) {
       return displayName(creator);
     } 
   };
+
+  Template.task.created_at = function() {
+    return displayDate(this.created_at);
+  };
+
   Template.task.not_started = function (){
     return !this.is_started;
   };

@@ -25,7 +25,8 @@
 
 <template name="task">
 <li>
-  {{name}} created by <em>{{creator_email}}</em>
+  {{name}} created by <b>{{creator_email}}</b>
+  <small>Created {{created_at}}</small>
   {{#if not_started}} 
   <a class="btn btn-primary" href="#" id="start">
     Start
