@@ -1,23 +1,3 @@
-Tasks = new Meteor.Collection("tasks");
-Tasks.allow({
-  insert: function (userId, task) {
-    return userId && task.creator === userId;
-  },
-  update: function (userId, task) {
-    return userId;
-  }
-});
-
-
-displayDate = function (date) {
-  return humaneDate(date);
-};
-
-displayName = function (user) {
-  return user.emails[0].address;
-};
-
-if (Meteor.isClient) {
 
   Template.task_list.tasks = function () {
     return Tasks.find({}, {sort: {name: 1}});     
@@ -76,14 +56,4 @@ if (Meteor.isClient) {
   Template.tasks_with_me.tasks = function () {
     return Tasks.find({$and: [{ 'starter': Meteor.userId() }, {'is_finished': {$ne: true}}]});
   };
-}
 
-  
-
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    Accounts.addAutopublishFields({
-      'forOtherUsers': ['emails']
-    });
-  });
-}
