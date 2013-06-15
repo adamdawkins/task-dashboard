@@ -9,7 +9,7 @@ Tasks.allow({
 });
 
 displayName = function (user) {
-  return user._id;
+  return user.emails[0].address;
 };
 
 if (Meteor.isClient) {
@@ -66,5 +66,8 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
+    Accounts.addAutopublishFields({
+      'forOtherUsers': ['emails']
+    });
   });
 }
