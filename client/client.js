@@ -29,14 +29,6 @@
     return displayDate(this.created_at);
   };
 
-  Template.task.not_started = function (){
-    return !this.is_started;
-  };
-
-  Template.task.not_finished = function (){
-    return !this.is_finished;
-  };
-
   Template.task.events({
      'click #start' : function () {
       Tasks.update({_id: this._id },

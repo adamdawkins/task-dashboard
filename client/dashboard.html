@@ -27,16 +27,16 @@
 <li>
   {{name}} created by <b>{{creator_email}}</b>
   <small>Created {{created_at}}</small>
-  {{#if not_started}} 
-  <a class="btn btn-primary" href="#" id="start">
-    Start
-  </a>
-  {{/if}}
-  {{#if not_finished}} 
-  <a class="btn btn-primary" href="#" id="finish">
-    Finish
-  </a>
-  {{/if}}
+  {{#unless is_started}} 
+    <a class="btn btn-primary" href="#" id="start">
+      Start
+    </a>
+  {{/unless}}
+  {{#unless is_finished}} 
+    <a class="btn btn-primary" href="#" id="finish">
+      Finish
+    </a>
+  {{/unless}}
 </li>
 </template>
 
